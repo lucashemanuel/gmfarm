@@ -5,7 +5,7 @@ require __DIR__ . '/vendor/autoload.php';
 use \App\Http\Router;
 use App\Utils\View;
 
-define('URL', 'http://localhost/gmfarm');
+define('URL', 'https://gmfarm.herokuapp.com');
 
 /* Define o valor padrão das variaveis */
 View::init([
