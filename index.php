@@ -13,6 +13,7 @@ Environment::load(__DIR__);
 /* Define a constante de URL */
 define('URL', getenv('URL'));
 
+
 /* Define o valor padrão das variaveis */
 View::init([
   'URL' => URL
