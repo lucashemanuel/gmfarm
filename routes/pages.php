@@ -11,10 +11,17 @@ $obRouter->get('/', [
   }
 ]);
 
-/* Rota SOBRE */
+/* Rota ESTOQUE */
 $obRouter->get('/estoque', [
   function () {
     return new Response(200, Pages\Estoque::getEstoque());
+  }
+]);
+
+/* Rota ESTOQUE (INSERT)*/
+$obRouter->post('/estoque', [
+  function ($request) {
+    return new Response(200, Pages\Estoque::insertMaterial($request));
   }
 ]);
 
