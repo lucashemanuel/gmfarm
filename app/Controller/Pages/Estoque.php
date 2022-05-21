@@ -25,4 +25,17 @@ class Estoque extends Page
     /* Retorna a View da Página */
     return parent::getPage('ESTOQUE > GMFARM', $content);
   }
+
+  public static function insertMaterial($request)
+  {
+
+    /* DADOS DO POST */
+    $postVars = $request->getPostVars();
+    echo "<pre>";
+    print_r($postVars);
+    echo "</pre>";
+    exit;
+
+    return self::getEstoque();
+  }
 }
