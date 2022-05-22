@@ -13,8 +13,8 @@ $obRouter->get('/', [
 
 /* Rota ESTOQUE */
 $obRouter->get('/estoque', [
-  function () {
-    return new Response(200, Pages\Estoque::getEstoque());
+  function ($request) {
+    return new Response(200, Pages\Estoque::getEstoque($request));
   }
 ]);
 
