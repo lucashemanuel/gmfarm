@@ -100,6 +100,7 @@
                         type="radio"
                         name="embalagem_original"
                         id="embalagemOpcao1"
+                        value="Sim"
                         checked
                       />
                       <label class="form-check-label" for="embalagemOpcao1">
@@ -111,6 +112,7 @@
                         class="form-check-input"
                         type="radio"
                         name="embalagem_original"
+                        value="Não"
                         id="embalagemOpcao2"
                       />
                       <label class="form-check-label" for="embalagemOpcao2">
@@ -180,18 +182,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-          </tr>
+          {{itens}}
         </tbody>
       </table>
     </div>
