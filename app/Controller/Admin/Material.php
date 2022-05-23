@@ -29,7 +29,7 @@ class Material extends Page
     $paginaAtual = $queryParams['page'] ?? 1;
 
     /* Instancia de paginação */
-    $obPagination = new Pagination($quantidadeTotal, $paginaAtual, 2);
+    $obPagination = new Pagination($quantidadeTotal, $paginaAtual, 20);
 
     /* Resultados da página */
     $results = EntityEstoque::getItems(null, 'id_material DESC', $obPagination->getLimit());

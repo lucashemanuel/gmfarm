@@ -20,9 +20,9 @@ class Page
       'label' => 'Materiais',
       'link' => URL . '/admin/materiais'
     ],
-    'alunos' => [
-      'label' => 'Alunos',
-      'link' => URL . '/admin/alunos'
+    'usuarios' => [
+      'label' => 'Usuários',
+      'link' => URL . '/admin/usuarios'
     ]
   ];
 
