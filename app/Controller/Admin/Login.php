@@ -15,12 +15,10 @@ class Login extends Page
    * @param string $errorMsg
    * @return string 
    */
-  public static function getLogin($request, $erroMsg = null)
+  public static function getLogin($request, $errorMsg = null)
   {
     /* STATUS */
-    $status = !is_null($erroMsg) ? View::render('admin/login/status', [
-      'mensagem' => $erroMsg
-    ]) : '';
+    $status = !is_null($errorMsg) ? Alert::getError($errorMsg) : '';
 
     $content = View::render('admin/login', [
       'status' => $status
