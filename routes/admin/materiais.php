@@ -46,3 +46,25 @@ $obRouter->post('/admin/materiais/{id_material}/edit', [
     return new Response(200, Admin\Material::setEditMaterial($request, $id_material));
   }
 ]);
+
+/* Rota de exclusão de Materiais */
+
+$obRouter->get('/admin/materiais/{id_material}/delete', [
+  'middlewares' => [
+    'required-admin-login'
+  ],
+  function ($request, $id_material) {
+    return new Response(200, Admin\Material::getDeleteMaterial($request, $id_material));
+  }
+]);
+
+/* Rota de exclusão de Materiais (POST) */
+
+$obRouter->post('/admin/materiais/{id_material}/delete', [
+  'middlewares' => [
+    'required-admin-login'
+  ],
+  function ($request, $id_material) {
+    return new Response(200, Admin\Material::setDeleteMaterial($request, $id_material));
+  }
+]);

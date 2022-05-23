@@ -68,6 +68,11 @@ class Estoque
     ]);
   }
 
+  public function excluir()
+  {
+    /* EXCLUI O MATERIAL NO BANCO DE DADOS */
+    return (new Database('estoque'))->delete('id_material = ' . $this->id_material);
+  }
 
 
   /**

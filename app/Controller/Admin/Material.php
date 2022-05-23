@@ -63,7 +63,8 @@ class Material extends Page
     /* CONTEÚDO DA HOME */
     $content = View::render('admin/modules/materiais/index', [
       'itens' => self::getEstoqueItems($request, $obPagination),
-      'pagination' => parent::getPagination($request, $obPagination)
+      'pagination' => parent::getPagination($request, $obPagination),
+      'status' => self::getStatus($request)
     ]);
 
     /* RETORNA A PÁGINA COMPLETA */
@@ -118,6 +119,9 @@ class Material extends Page
         break;
       case 'updated':
         return Alert::getSuccess('Material atualizado com sucesso!');
+        break;
+      case 'deleted':
+        return Alert::getSuccess('Material deletado com sucesso!');
         break;
     }
   }
@@ -192,5 +196,57 @@ class Material extends Page
 
     /* REDIRECIONA O USUARIO */
     $request->getRouter()->redirect('/admin/materiais/' . $obMaterial->id_material . '/edit?status=updated');
+  }
+
+  /**
+   * Método responsável por retornar o formulário de exclusão de um material
+   * @param Request $request
+   * @param integer $id_material
+   * @return string
+   */
+  public static function getDeleteMaterial($request, $id_material)
+  {
+
+    /* OBTEM MATERIAL NO BANCO DE DADOS */
+    $obMaterial = EntityEstoque::getMaterialById($id_material);
+
+    /* CASO NÃO EXISTA */
+    if (!$obMaterial instanceof EntityEstoque) {
+      $request->getRouter()->redirect('/admin/materiais');
+    }
+
+    /* CONTEUDO DO FORMULÁRIO */
+    $content = View::render('admin/modules/materiais/delete', [
+      'id_material' => $obMaterial->id_material,
+      'title' => 'Deletar Material',
+      'cas' => $obMaterial->cas
+    ]);
+
+    /* RETORNA A PÁGINA */
+    return parent::getPanel('Deletar material > GMFARM', $content, 'materiais');
+  }
+
+  /**
+   * Método responsável por fazer a exclusão de um material
+   * @param Request $request
+   * @param integer $id_material
+   * @return string
+   */
+  public static function setDeleteMaterial($request, $id_material)
+  {
+
+    /* OBTEM MATERIAL NO BANCO DE DADOS */
+    $obMaterial = EntityEstoque::getMaterialById($id_material);
+
+    /* CASO NÃO EXISTA */
+    if (!$obMaterial instanceof EntityEstoque) {
+      $request->getRouter()->redirect('/admin/materiais');
+    }
+
+    /* EXCLUI O MATERIAL */
+    $obMaterial->excluir();
+
+    /* REDIRECIONA O USUARIO */
+    $request->getRouter()->redirect('/admin/materiais?status=deleted');
   }
 }
