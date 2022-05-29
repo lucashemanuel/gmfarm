@@ -28,10 +28,6 @@ class Page
       'label' => 'Pacientes',
       'link' => URL . '/admin/pacientes'
     ],
-    'calculadora' => [
-      'label' => 'Calculadora',
-      'link' => URL . '/admin/calculadora'
-    ],
     'relatorio' => [
       'label' => 'Relatório',
       'link' => URL . '/admin/relatorio'
