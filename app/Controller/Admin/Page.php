@@ -20,9 +20,21 @@ class Page
       'label' => 'Materiais',
       'link' => URL . '/admin/materiais'
     ],
-    'usuarios' => [
-      'label' => 'Usuários',
-      'link' => URL . '/admin/usuarios'
+    'alunos' => [
+      'label' => 'Alunos',
+      'link' => URL . '/admin/alunos'
+    ],
+    'pacientes' => [
+      'label' => 'Pacientes',
+      'link' => URL . '/admin/pacientes'
+    ],
+    'calculadora' => [
+      'label' => 'Calculadora',
+      'link' => URL . '/admin/calculadora'
+    ],
+    'relatorio' => [
+      'label' => 'Relatório',
+      'link' => URL . '/admin/relatorio'
     ]
   ];
 
@@ -30,13 +42,15 @@ class Page
    * Método responsável por retornar o conteúdo (view) da estrutura genérica de página do painel
    * @param string $title 
    * @param string $content
+   * @param string $urlLink
    * @return string
    */
-  public static function getPage($title, $content)
+  public static function getPage($title, $content, $style)
   {
     return View::render('admin/page', [
       'title' => $title,
-      'content' => $content
+      'content' => $content,
+      'style' => $style
     ]);
   }
 
@@ -83,7 +97,7 @@ class Page
     ]);
 
     /* RETORNA A PÁGINA RENDERIZADA */
-    return self::getPage($title, $contentPanel);
+    return self::getPage($title, $contentPanel, '');
   }
 
   public static function getPagination($request, $obPagination)

@@ -24,8 +24,8 @@ class Login extends Page
       'status' => $status
     ]);
 
-    /* Retorna a página completa */
-    return parent::getPage('Login > GMFARM', $content);
+    $style = '../resources/css/index.css';
+    return parent::getPage('Login > GMFARM', $content, $style);
   }
 
   /**
