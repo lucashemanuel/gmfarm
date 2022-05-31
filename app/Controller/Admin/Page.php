@@ -28,9 +28,9 @@ class Page
       'label' => 'Pacientes',
       'link' => URL . '/admin/pacientes'
     ],
-    'relatorio' => [
-      'label' => 'Relatório',
-      'link' => URL . '/admin/relatorio'
+    'receitas' => [
+      'label' => 'Receitas',
+      'link' => URL . '/admin/receitas'
     ]
   ];
 
