@@ -3,8 +3,10 @@
 namespace App\Controller\Admin;
 
 use \App\Utils\View;
-use \App\Utils\plugins\tbs_plugin_opentbs;
-use \App\Utils\tbs_class;
+use clsTinyButStrong;
+
+include_once "../../Utils/tbs_class.php";
+include_once "../../Utils/plugins/tbs_plugin_opentbs.php";
 
 class Receita extends Page
 {
@@ -22,12 +24,14 @@ class Receita extends Page
     return parent::getPanel('Receitas > GMFARM', $content, 'receitas');
   }
 
-    /**
+  /**
    * Método responsável por criar o Relatório
    * @return string
    */
   public static function setReceita($request)
   {
+
+
 
     /* DADOS DO POST */
     $postVars = $request->getPostVars();
@@ -46,9 +50,10 @@ class Receita extends Page
       return array_combine($arr, $tipoArray);
     }
 
+
     $TBS = new clsTinyButStrong;
     $TBS->Plugin(TBS_INSTALL, OPENTBS_PLUGIN);
-    $template = 'Receituário.docx';
+    $template = 'resources/view/admin/modules/receitas/Receituario.docx';
     $TBS->LoadTemplate($template, OPENTBS_ALREADY_UTF8);
     $TBS->MergeBlock('blk1', $array_type1);
     $TBS->MergeBlock('blk2', $array_type2);
