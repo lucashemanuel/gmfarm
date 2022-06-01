@@ -9,5 +9,11 @@ include __DIR__ . '/admin/login.php';
 /* INCLUI AS ROTAS DE MATERIAIS */
 include __DIR__ . '/admin/materiais.php';
 
-/* INCLUI AS ROTAS DE RELATÓRIOS */
+/* INCLUI AS ROTAS DE RECEITA */
 include __DIR__ . '/admin/receita.php';
+
+/* INCLUI AS ROTAS DE ALUNOS */
+include __DIR__ . '/admin/alunos.php';
+
+/* INCLUI AS ROTAS DE PACIENTES */
+include __DIR__ . '/admin/pacientes.php';
