@@ -13,3 +13,14 @@ $obRouter->get('/admin/receitas', [
     return new Response(200, Admin\Receita::getReceita($request));
   }
 ]);
+
+/* Rota de POST de Receituário */
+
+$obRouter->post('/admin/receitas', [
+  'middlewares' => [
+    'required-admin-login'
+  ],
+  function ($request) {
+    return new Response(200, Admin\Receita::setReceita($request));
+  }
+]);
