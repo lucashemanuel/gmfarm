@@ -37,7 +37,7 @@ CREATE TABLE `estoque` (
   `embalagem_original` varchar(10) NOT NULL,
   `quantidade` int NOT NULL,
   `cas` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `estoque`
@@ -59,7 +59,7 @@ CREATE TABLE `usuarios` (
   `nome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `usuarios`
