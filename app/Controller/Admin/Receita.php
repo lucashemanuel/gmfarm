@@ -47,10 +47,6 @@ class Receita extends Page
     $array_type3 = array_combine(array("date"), $date);
     $array_type4 = array_combine(array("time"), $time);
 
-    echo "<pre>";
-    print_r($array_type3);
-    echo "</pre>"; exit;
-
     $TBS = new clsTinyButStrong;
     $TBS->Plugin(TBS_INSTALL, OPENTBS_PLUGIN);
     $template = 'resources/view/admin/modules/receitas/Receituario.docx';
