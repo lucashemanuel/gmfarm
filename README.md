@@ -16,8 +16,8 @@
 - [x] Exclusão de materiais
 - [x] Login de Usuário
 - [x] Tratramento de Sessão
-- [ ] Calculadora de Receita
-- [ ] Relatório
+- [x] Calculadora de Receita
+- [x] Relatório
 - [ ] Pacientes
 
 ### 🌍 Preparação de Ambiente
