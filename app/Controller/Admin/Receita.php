@@ -5,8 +5,8 @@ namespace App\Controller\Admin;
 use \App\Utils\View;
 use clsTinyButStrong;
 
-include_once "../../Utils/tbs_class.php";
-include_once "../../Utils/plugins/tbs_plugin_opentbs.php";
+include_once "app/Utils/tbs_class.php";
+include_once "app/Utils/plugins/tbs_plugin_opentbs.php";
 
 class Receita extends Page
 {
@@ -30,26 +30,26 @@ class Receita extends Page
    */
   public static function setReceita($request)
   {
-
-
-
     /* DADOS DO POST */
     $postVars = $request->getPostVars();
     $inputs = $postVars['medicacao'];
     $obs = array($postVars['obs']);
+    $date = array(date('d/M/y'));
+    $time = array(date('H:m'));
 
-    $array_type1 = combineArrays($inputs, "input");
-    $array_type2 = array_combine(array("observacao"), $obs);
-
-    function combineArrays($tipoArray, $nomeArray)
-    {
-      $arr = [];
-      for ($i = 1; $i <= count($tipoArray); $i++) {
-        array_push($arr, "$nomeArray$i");
-      }
-      return array_combine($arr, $tipoArray);
+    $arr = [];
+    for ($i = 1; $i <= count($inputs); $i++) {
+      array_push($arr, "medicacao$i");
     }
 
+    $array_type1 = array_combine($arr, $inputs);
+    $array_type2 = array_combine(array("observacao"), $obs);
+    $array_type3 = array_combine(array("date"), $date);
+    $array_type4 = array_combine(array("time"), $time);
+
+    echo "<pre>";
+    print_r($array_type3);
+    echo "</pre>"; exit;
 
     $TBS = new clsTinyButStrong;
     $TBS->Plugin(TBS_INSTALL, OPENTBS_PLUGIN);
@@ -57,6 +57,8 @@ class Receita extends Page
     $TBS->LoadTemplate($template, OPENTBS_ALREADY_UTF8);
     $TBS->MergeBlock('blk1', $array_type1);
     $TBS->MergeBlock('blk2', $array_type2);
+    $TBS->MergeBlock('blk3', $array_type3);
+    $TBS->MergeBlock('blk4', $array_type4);
 
     $TBS->PlugIn(OPENTBS_DELETE_COMMENTS);
 
