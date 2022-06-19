@@ -43,12 +43,12 @@ class Login extends Page
     /* BUSCA USUARIO PELO EMAIL */
     $obUser = User::getUserByEmail($email);
     if (!$obUser instanceof User) {
-      return self::getLogin($request, 'E-mail inválido');
+      return self::getLogin($request, 'E-mail ou senha inválidos');
     }
 
     /* VERIFICA A SENHA DO USUÁRIO */
     if (!password_verify($senha, $obUser->senha)) {
-      return self::getLogin($request, 'Senha inválida');
+      return self::getLogin($request, 'E-mail ou senha inválidos');
     }
 
     /* CRIA SESSÃO DE LOGIN */

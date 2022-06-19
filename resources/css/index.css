@@ -29,7 +29,7 @@ nav {
 /* Custom Style */
 main {
   background: var(--main);
-  height: 100vh;
+  height: 900px;
 }
 .navbar {
   background-color: var(--nav);
@@ -39,8 +39,4 @@ footer {
 }
 .text-orange {
   color: var(--orange);
-}
-
-a.nav-link {
-  font-weight: 700;
 }

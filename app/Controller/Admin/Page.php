@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use \App\Utils\View;
+use \App\Session\Admin\Login as LoginAdmin;
 
 class Page
 {
@@ -60,6 +61,12 @@ class Page
 
     /* LNKS DO MENU */
     $links = '';
+
+    $obTypeUser = LoginAdmin::typeLogin();
+
+    if ($obTypeUser !== 'admin') {
+      unset(self::$modules['alunos']);
+    }
 
     /* ITERA OS MODULOS */
     foreach (self::$modules as $hash => $module) {

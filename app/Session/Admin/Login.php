@@ -32,7 +32,8 @@ class Login
     $_SESSION['admin']['usuario'] = [
       'id' => $obUser->id,
       'nome' => $obUser->nome,
-      'email' => $obUser->email
+      'email' => $obUser->email,
+      'tipo_usuario' => $obUser->tipo_usuario
     ];
 
     /* RETORNA SUCESSO */
@@ -51,6 +52,16 @@ class Login
 
     /* RETORNA A VERIFICAÇÃO */
     return isset($_SESSION['admin']['usuario']['id']);
+  }
+
+  public static function typeLogin()
+  {
+
+    /* INICIA A SESSÃO */
+    self::init();
+
+    /* RETORNA A VERIFICAÇÃO */
+    return $_SESSION['admin']['usuario']['tipo_usuario'];
   }
 
   /**

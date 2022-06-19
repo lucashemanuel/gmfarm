@@ -7,7 +7,8 @@ use \App\Controller\Admin;
 
 $obRouter->get('/admin/alunos', [
   'middlewares' => [
-    'required-admin-login'
+    'required-admin-login',
+    'required-admin-type'
   ],
   function ($request) {
     return new Response(200, Admin\Alunos::getAluno($request));
@@ -18,7 +19,8 @@ $obRouter->get('/admin/alunos', [
 
 $obRouter->post('/admin/alunos', [
   'middlewares' => [
-    'required-admin-login'
+    'required-admin-login',
+    'required-admin-type'
   ],
   function ($request) {
     return new Response(200, Admin\Alunos::setNewAluno($request));
@@ -29,7 +31,8 @@ $obRouter->post('/admin/alunos', [
 
 $obRouter->get('/admin/alunos/{id}/edit', [
   'middlewares' => [
-    'required-admin-login'
+    'required-admin-login',
+    'required-admin-type'
   ],
   function ($request, $id) {
     return new Response(200, Admin\Alunos::getEditAluno($request, $id));
@@ -40,7 +43,8 @@ $obRouter->get('/admin/alunos/{id}/edit', [
 
 $obRouter->post('/admin/alunos/{id}/edit', [
   'middlewares' => [
-    'required-admin-login'
+    'required-admin-login',
+    'required-admin-type'
   ],
   function ($request, $id) {
     return new Response(200, Admin\Alunos::setEditAluno($request, $id));
@@ -51,7 +55,8 @@ $obRouter->post('/admin/alunos/{id}/edit', [
 
 $obRouter->get('/admin/alunos/{id}/delete', [
   'middlewares' => [
-    'required-admin-login'
+    'required-admin-login',
+    'required-admin-type'
   ],
   function ($request, $id) {
     return new Response(200, Admin\Alunos::getDeleteAluno($request, $id));
@@ -62,7 +67,8 @@ $obRouter->get('/admin/alunos/{id}/delete', [
 
 $obRouter->post('/admin/alunos/{id}/delete', [
   'middlewares' => [
-    'required-admin-login'
+    'required-admin-login',
+    'required-admin-type'
   ],
   function ($request, $id) {
     return new Response(200, Admin\Alunos::setDeleteAluno($request, $id));

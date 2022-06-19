@@ -30,15 +30,14 @@ class Alunos extends Page
     $obPagination = new Pagination($quantidadeTotal, $paginaAtual, 20);
 
     /* Resultados da página */
-    $results = EntityUser::getAtributos(null, 'id ASC', $obPagination->getLimit());
+    $results = EntityUser::getAtributos('tipo_usuario = "aluno"', 'id ASC', $obPagination->getLimit(), ' id, nome, email');
 
     /* Renderiza o atributo */
     while ($obUser = $results->fetchObject(EntityUser::class)) {
       $atributos .= View::render('admin/modules/alunos/atributo', [
         'id' => $obUser->id,
         'nome' => $obUser->nome,
-        'email' => $obUser->email,
-        'senha' => $obUser->senha
+        'email' => $obUser->email
       ]);
     }
 
