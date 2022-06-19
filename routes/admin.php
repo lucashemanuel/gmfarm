@@ -17,3 +17,6 @@ include __DIR__ . '/admin/alunos.php';
 
 /* INCLUI AS ROTAS DE PACIENTES */
 include __DIR__ . '/admin/pacientes.php';
+
+/* INCLUI AS ROTAS DE CALCULADORA */
+include __DIR__ . '/admin/calculadora.php';

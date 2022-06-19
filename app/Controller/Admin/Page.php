@@ -32,6 +32,10 @@ class Page
     'receitas' => [
       'label' => 'Receitas',
       'link' => URL . '/admin/receitas'
+    ],
+    'calculadora' => [
+      'label' => 'Calculadora',
+      'link' => URL . '/admin/calculadora'
     ]
   ];
 
