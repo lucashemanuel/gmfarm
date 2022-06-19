@@ -30,14 +30,15 @@ class Alunos extends Page
     $obPagination = new Pagination($quantidadeTotal, $paginaAtual, 20);
 
     /* Resultados da página */
-    $results = EntityUser::getAtributos('tipo_usuario = "aluno"', 'id ASC', $obPagination->getLimit(), ' id, nome, email');
+    $results = EntityUser::getAtributos('tipo_usuario = "aluno"', 'id ASC', $obPagination->getLimit(), ' id, nome, email, matricula');
 
     /* Renderiza o atributo */
     while ($obUser = $results->fetchObject(EntityUser::class)) {
       $atributos .= View::render('admin/modules/alunos/atributo', [
         'id' => $obUser->id,
         'nome' => $obUser->nome,
-        'email' => $obUser->email
+        'email' => $obUser->email,
+        'matricula' => $obUser->matricula
       ]);
     }
 
@@ -79,6 +80,7 @@ class Alunos extends Page
     $obUser = new EntityUser;
     $obUser->nome = $postVars['nome'];
     $obUser->email = $postVars['email'];
+    $obUser->matricula = $postVars['matricula'];
     $obUser->senha = $senhaCrip;
     $obUser->cadastrar();
 
@@ -137,6 +139,7 @@ class Alunos extends Page
       'title' => 'Editar Aluno',
       'nome' => $obUser->nome,
       'email' => $obUser->email,
+      'matricula' => $obUser->matricula,
       'status' => self::getStatus($request)
     ]);
 
@@ -164,11 +167,16 @@ class Alunos extends Page
     /* POST VARS */
     $postVars = $request->getPostVars();
 
-    $cripSenha = password_hash($postVars['senha'], PASSWORD_BCRYPT);
+    $cripSenha = null;
+
+    if ($postVars['senha'] !== '') {
+      $cripSenha = password_hash($postVars['senha'], PASSWORD_BCRYPT);
+    }
 
     /* ATUALIZA A INSTANCIA */
     $obUser->nome = $postVars['nome'] ?? $obUser->nome;
     $obUser->email = $postVars['email'] ?? $obUser->email;
+    $obUser->matricula = $postVars['matricula'] ?? $obUser->matricula;
     $obUser->senha = $cripSenha ?? $obUser->senha;
     $obUser->atualizar();
 

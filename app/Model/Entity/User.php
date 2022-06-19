@@ -12,6 +12,8 @@ class User
 
   public $email;
 
+  public $matricula;
+
   public $senha;
 
   public function cadastrar()
@@ -20,6 +22,7 @@ class User
     $this->id = (new Database('usuarios'))->insert([
       'nome' => $this->nome,
       'email' => $this->email,
+      'matricula' => $this->matricula,
       'senha' => $this->senha
     ]);
 
@@ -33,7 +36,8 @@ class User
     return (new Database('usuarios'))->update('id = ' . $this->id, [
       'nome' => $this->nome,
       'email' => $this->email,
-      'senha' => $this->senha,
+      'matricula' => $this->matricula,
+      'senha' => $this->senha
     ]);
   }
 

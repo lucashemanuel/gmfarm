@@ -1,9 +1,12 @@
 <!-- CARDS -->
 <!-- STATS -->
 <div class="container">
-  <div class="row mx-auto my-5">
-    <div class="col">
-      <div class="card text-white bg-primary" style="max-width: 18rem">
+  <div class="row my-5">
+    <div class="col-12 col-lg-3 col-sm-6">
+      <div
+        class="card mx-auto mb-3 text-white mb-sm-2 bg-primary"
+        style="max-width: 18rem"
+      >
         <div class="card-body text-center">
           <h1 class="card-title">305</h1>
           <p class="card-text fs-4">Alunos</p>
@@ -11,8 +14,11 @@
         <div class="card-footer"></div>
       </div>
     </div>
-    <div class="col">
-      <div class="card text-white bg-warning" style="max-width: 18rem">
+    <div class="col-12 col-lg-3 col-sm-6">
+      <div
+        class="card mx-auto mb-3 text-white bg-warning"
+        style="max-width: 18rem"
+      >
         <div class="card-body text-center">
           <h1 class="card-title">100</h1>
           <p class="card-text fs-4">Materiais</p>
@@ -20,8 +26,11 @@
         <div class="card-footer"></div>
       </div>
     </div>
-    <div class="col">
-      <div class="card text-white bg-success" style="max-width: 18rem">
+    <div class="col-12 col-lg-3 col-sm-6">
+      <div
+        class="card mx-auto mb-3 text-white bg-success"
+        style="max-width: 18rem"
+      >
         <div class="card-body text-center">
           <h1 class="card-title">50</h1>
           <p class="card-text fs-4">Pacientes</p>
@@ -29,8 +38,11 @@
         <div class="card-footer"></div>
       </div>
     </div>
-    <div class="col">
-      <div class="card text-white bg-danger" style="max-width: 18rem">
+    <div class="col-12 col-lg-3 col-sm-6">
+      <div
+        class="card mx-auto mb-3 text-white bg-danger"
+        style="max-width: 18rem"
+      >
         <div class="card-body text-center">
           <h1 class="card-title">3</h1>
           <p class="card-text fs-4">Receitas Geradas</p>
@@ -43,6 +55,76 @@
 <!-- FIM CARDS -->
 <!-- FIM STATS -->
 <hr />
+<!-- PERFIL -->
+<div class="row">
+  <div class="col-12 col-md-8 col-lg-6 mx-auto mt-3">
+    <h2 class="text-center">Bem-vindo(a), {{nome}}</h2>
+    <div class="my-3">
+      <p><strong>Matrícula: </strong>{{matricula}}</p>
+      <p><strong>E-mail: </strong>{{email}}</p>
+      <div class="d-flex justify-content-center mt-5">
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#modal"
+        >
+          Alterar Senha
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modal"
+  tabindex="-1"
+  aria-labelledby="modallabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modallabel">Redefinição de Senha</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form method="post">
+          <div class="mb-3">
+            <label for="senha" class="form-label">Senha atual:</label>
+            <input type="password" class="form-control" id="senha" />
+          </div>
+          <div class="mb-3">
+            <label for="nsenha" class="form-label">Nova senha:</label>
+            <input type="password" class="form-control" id="nsenha" />
+          </div>
+          <div class="mb-3">
+            <label for="csenha" class="form-label">Confirme a senha:</label>
+            <input type="password" class="form-control" id="csenha" />
+          </div>
+        </form>
+        <div class="d-grid gap-2 mt-4 d-md-flex justify-content-md-between">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Fechar
+          </button>
+          <button type="button" class="btn btn-primary">Salvar Mudanças</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FIM MODAL -->
 
 <script
   src="https://kit.fontawesome.com/cf4fb9e680.js"
