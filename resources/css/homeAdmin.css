@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,400i,700");
 
+:root {
+  --usuarios: #4a77e2;
+  --pacientes: #7cc4f7;
+  --materiais: #7cc4f7;
+  --receitas: #7cc4f7;
+}
+
 .container-box {
   font-size: 16px;
   color: #404040;

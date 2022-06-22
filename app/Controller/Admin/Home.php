@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use \App\Utils\View;
 use \App\Model\Entity\User as EntityUser;
+use \App\Model\Entity\Dados as EntityDados;
 
 class Home extends Page
 {
@@ -16,13 +17,19 @@ class Home extends Page
   {
     $id = $_SESSION['admin']['usuario']['id'];
     $obUser = EntityUser::getAlunoById($id);
+    $results = EntityDados::getDados(null, null, null, '(select count(*) from estoque) AS estoque, (select count(*) from paciente) AS paciente, (select count(*) from usuarios) AS usuarios');
+
+    $obDados = $results->fetchObject(EntityDados::class);
 
     /* CONTEÚDO DA HOME */
     $content = View::render('admin/modules/home/index', [
       'nome' => $obUser->nome,
       'email' => $obUser->email,
       'matricula' => $obUser->matricula,
-      'senha' => $obUser->senha
+      'senha' => $obUser->senha,
+      'nestoque' => $obDados->estoque ?? 0,
+      'nusuarios' => $obDados->usuarios ?? 0,
+      'npacientes' => $obDados->paciente ?? 0
     ]);
 
     /* RETORNA A PÁGINA COMPLETA */
