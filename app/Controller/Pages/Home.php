@@ -16,6 +16,7 @@ class Home extends Page
 
   public static function getHome()
   {
+
     $obOrganization = new Organization;
 
     /* View da Home */
@@ -23,6 +24,7 @@ class Home extends Page
       'welcome' => $obOrganization->welcome,
       'description' => $obOrganization->description
     ]);
+
 
     /* Retorna a View da Página */
     return parent::getPage('HOME > GMFARM', $content);
