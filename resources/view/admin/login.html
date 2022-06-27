@@ -1,4 +1,44 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+<style>
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
+
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+</style>
+<nav class="navbar fixed-top navbar-expand-lg navbar-light">
   <div class="container">
     <button
       class="navbar-toggler"
@@ -32,38 +72,45 @@
     </div>
   </div>
 </nav>
-<div class="d-flex mt-5 pt-4 pt-md-4 justify-content-center">
-  <div class="card mt-5 mx-3 px-md-0 text-center" style="width: 500px">
-    <div class="card-header py-3">
-      <h1 class="text-orange fw-bold">GM FARM UNICEPLAC</h1>
+<main class="form-signin text-center">
+  <form method="post">
+    <img
+      class="mb-4"
+      src="{{URL}}/resources/images/Vertical-Colorida.jpg"
+      alt="Uniceplac"
+      width="180"
+      height="180"
+    />
+    <h1 class="h3 mb-3 fw-normal">Por favor realize o login</h1>
+
+    {{status}}
+    <div class="form-floating">
+      <input
+        type="email"
+        class="form-control"
+        id="floatingInput"
+        placeholder="nome@exemplo.com"
+        name="email"
+        required
+      />
+      <label for="floatingInput">E-mail</label>
     </div>
-    <div class="card-body">
-      {{status}}
-      <form method="post">
-        <div class="form-floating mb-3">
-          <input
-            type="email"
-            class="form-control"
-            name="email"
-            id="email"
-            placeholder="endereço@email.com"
-          />
-          <label for="email">E-mail</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input
-            type="password"
-            class="form-control"
-            name="senha"
-            id="senha"
-            placeholder="senha"
-          />
-          <label for="senha">Senha</label>
-        </div>
-        <div class="mb-3">
-          <button type="submit" class="btn btn-primary">Entrar</button>
-        </div>
-      </form>
+    <div class="form-floating">
+      <input
+        type="password"
+        class="form-control"
+        id="floatingPassword"
+        placeholder="Password"
+        name="senha"
+        required
+      />
+      <label for="floatingPassword">Senha</label>
     </div>
-  </div>
-</div>
+
+    <div class="checkbox mb-3">
+      <label> <input type="checkbox" value="lembrar" /> Lembrar dados </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2022–presente</p>
+  </form>
+</main>
