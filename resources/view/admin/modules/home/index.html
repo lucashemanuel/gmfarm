@@ -55,27 +55,9 @@
 <!-- FIM CARDS -->
 <!-- FIM STATS -->
 <hr />
+{{statusError}}
+{{statusSuccess}}
 <!-- PERFIL -->
-<!-- <div class="row">
-  <div class="col-12 col-md-8 col-lg-6 mx-auto mt-3">
-    <h2 class="text-center">Bem-vindo(a), {{nome}}</h2>
-    <div class="my-3">
-      <p><strong>Matrícula: </strong>{{matricula}}</p>
-      <p><strong>E-mail: </strong>{{email}}</p>
-      <div class="d-flex justify-content-center mt-5">
-        <button
-          type="button"
-          class="btn btn-outline-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#modal"
-        >
-          Alterar Senha
-        </button>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 <!-- CARD PERFIL -->
 <div class="container-box">
   <div class="box">
@@ -129,26 +111,29 @@
         <form method="post">
           <div class="mb-3">
             <label for="senha" class="form-label">Senha atual:</label>
-            <input type="password" class="form-control" id="senha" />
+            <input type="password" class="form-control" id="senha" name="senha" required />
           </div>
           <div class="mb-3">
             <label for="nsenha" class="form-label">Nova senha:</label>
-            <input type="password" class="form-control" id="nsenha" />
+            <input type="password" class="form-control" id="nsenha" name="nsenha" required />
           </div>
           <div class="mb-3">
             <label for="csenha" class="form-label">Confirme a senha:</label>
-            <input type="password" class="form-control" id="csenha" />
+            <input type="password" class="form-control" id="csenha" name="csenha" required />
+            <div class="invalid-feedback">As senha não conferem</div>
           </div>
+          <div class="d-grid gap-2 mt-4 d-md-flex justify-content-md-between">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Fechar
+            </button>
+            <button type="submit" class="btn btn-primary submitSenha">
+              Salvar Mudanças
+            </button>
         </form>
-        <div class="d-grid gap-2 mt-4 d-md-flex justify-content-md-between">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Fechar
-          </button>
-          <button type="button" class="btn btn-primary">Salvar Mudanças</button>
         </div>
       </div>
     </div>
@@ -161,3 +146,4 @@
   src="https://kit.fontawesome.com/cf4fb9e680.js"
   crossorigin="anonymous"
 ></script>
+<script src="{{URL}}/resources/js/adminHome.js"></script>

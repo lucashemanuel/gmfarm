@@ -19,6 +19,6 @@ $obRouter->post('/admin', [
     'required-admin-login'
   ],
   function ($request) {
-    return new Response(200, Admin\Home::setCalculo($request));
+    return new Response(200, Admin\Home::setSenha($request));
   }
 ]);
