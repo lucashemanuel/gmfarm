@@ -36,6 +36,10 @@ class Page
     'calculadora' => [
       'label' => 'Calculadora',
       'link' => URL . '/admin/calculadora'
+    ],
+    'perfil' => [
+      'label' => 'Perfil',
+      'link' => URL . '/admin/perfil'
     ]
   ];
 
@@ -88,6 +92,18 @@ class Page
   }
 
   /**
+   * Método responsável por renderizar a view do menu do painel
+   * @param string $currentModule
+   * @return string
+   */
+  private static function getFooter()
+  {
+
+    /* RENDERIZA A VIEW DO FOOTER */
+    return View::render('admin/footer/footer', []);
+  }
+
+  /**
    * Método responsável por renderizar a view do painel
    * @param string $title
    * @param string $content
@@ -100,7 +116,8 @@ class Page
     /* RENDERIZA A VIEW DO PAINEL */
     $contentPanel = View::render('admin/panel', [
       'menu' => self::getMenu($currentModule),
-      'content' => $content
+      'content' => $content,
+      'footer' => self::getFooter()
     ]);
 
     /* RETORNA A PÁGINA RENDERIZADA */

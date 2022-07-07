@@ -18,7 +18,7 @@
 - [x] Tratramento de Sessão
 - [x] Calculadora de Receita
 - [x] Relatório
-- [ ] Pacientes
+- [x] Pacientes
 
 ### 🌍 Preparação de Ambiente
 - Precisa estar instalado no seu Ambiente: [XAMPP](https://www.apachefriends.org/pt_br/index.html) ou <b>PHP, Apache e MySQL</b> separados.

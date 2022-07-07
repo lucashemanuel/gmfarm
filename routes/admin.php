@@ -20,3 +20,6 @@ include __DIR__ . '/admin/pacientes.php';
 
 /* INCLUI AS ROTAS DE CALCULADORA */
 include __DIR__ . '/admin/calculadora.php';
+
+/* INCLUI AS ROTAS DE PERFIL */
+include __DIR__ . '/admin/perfil.php';

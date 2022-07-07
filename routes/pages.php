@@ -11,6 +11,14 @@ $obRouter->get('/', [
   }
 ]);
 
+/* Rota de Termos */
+
+$obRouter->get('/termos', [
+  function () {
+    return new Response(200, Pages\Termos::getTermos());
+  }
+]);
+
 /* Rotas DINAMICAS */
 $obRouter->get('/pagina/{idPagina}/{acao}', [
   function ($idPagina, $acao) {
