@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 19, 2022 at 09:04 PM
--- Server version: 8.0.29-0ubuntu0.22.04.2
--- PHP Version: 8.1.2
+-- Tempo de geração: 07/07/2022 às 08:22
+-- Versão do servidor: 8.0.29-0ubuntu0.22.04.2
+-- Versão do PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,15 +18,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `gmfarm`
+-- Banco de dados: `gmfarm`
 --
-CREATE DATABASE IF NOT EXISTS `gmfarm` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS `gmfarm` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `gmfarm`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `estoque`
+-- Estrutura para tabela `estoque`
 --
 
 CREATE TABLE `estoque` (
@@ -39,12 +39,12 @@ CREATE TABLE `estoque` (
   `embalagem_original` varchar(10) NOT NULL,
   `quantidade` int NOT NULL,
   `cas` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `paciente`
+-- Estrutura para tabela `paciente`
 --
 
 CREATE TABLE `paciente` (
@@ -54,12 +54,12 @@ CREATE TABLE `paciente` (
   `contato` varchar(20) NOT NULL,
   `genero` varchar(5) NOT NULL,
   `situacao` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estrutura para tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -69,52 +69,60 @@ CREATE TABLE `usuarios` (
   `matricula` varchar(20) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `tipo_usuario` varchar(10) NOT NULL DEFAULT 'aluno'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indexes for dumped tables
+-- Despejando dados para a tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nome`, `email`, `matricula`, `senha`, `tipo_usuario`) VALUES
+(1, 'Admin', 'admin@gmail.com', '0013970', '$2y$10$c47NbrGr3Cr4p8uvtQHkcuHKIjhvPGIjr1U0jaGtiHyRvdsZUBjwu', 'admin'),
+(2, 'Aluno Teste', 'teste@teste.com', '0013970', '$2y$10$xj0MSSCxXBD6fkSiGfyUlu2/FVNc31HEWRm4aYhi7KlPb2o5DjzFG', 'aluno');
+
+--
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `estoque`
+-- Índices de tabela `estoque`
 --
 ALTER TABLE `estoque`
   ADD PRIMARY KEY (`id_material`);
 
 --
--- Indexes for table `paciente`
+-- Índices de tabela `paciente`
 --
 ALTER TABLE `paciente`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `usuarios`
+-- Índices de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `estoque`
+-- AUTO_INCREMENT de tabela `estoque`
 --
 ALTER TABLE `estoque`
-  MODIFY `id_material` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_material` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `paciente`
+-- AUTO_INCREMENT de tabela `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
