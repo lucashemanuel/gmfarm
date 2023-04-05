@@ -16,14 +16,17 @@ class User
 
   public $senha;
 
+  public $tipo_usuario;
+
   public function cadastrar()
   {
     /* INSERE NO BANCO DE DADOS */
-    $this->id = (new Database('usuarios'))->insert([
+    $this->id = (new Database('usuario'))->insert([
       'nome' => $this->nome,
       'email' => $this->email,
       'matricula' => $this->matricula,
-      'senha' => $this->senha
+      'senha' => $this->senha,
+      'tipo_usuario' => $this->tipo_usuario
     ]);
 
     /* Sucesso */
@@ -33,18 +36,19 @@ class User
   public function atualizar()
   {
     /* ATUALIZA NO BANCO DE DADOS */
-    return (new Database('usuarios'))->update('id = ' . $this->id, [
+    return (new Database('usuario'))->update('id = ' . $this->id, [
       'nome' => $this->nome,
       'email' => $this->email,
       'matricula' => $this->matricula,
-      'senha' => $this->senha
+      'senha' => $this->senha,
+      'tipo_usuario' => $this->tipo_usuario
     ]);
   }
 
   public function excluir()
   {
     /* EXCLUI O ALUNO NO BANCO DE DADOS */
-    return (new Database('usuarios'))->delete('id = ' . $this->id);
+    return (new Database('usuario'))->delete('id = ' . $this->id);
   }
 
 
@@ -55,13 +59,13 @@ class User
    */
   public static function getUserByEmail($email)
   {
-    return (new Database('usuarios'))->select('email = "' . $email . '"')->fetchObject(self::class);
+    return (new Database('usuario'))->select('email = "' . $email . '"')->fetchObject(self::class);
   }
 
   /**
-   * Método responsável por retornar o aluno com base no ID
-   * @param integer $id_material
-   * @return Estoque
+   * Método responsável por retornar o usuário com base no ID
+   * @param integer $id
+   * @return User
    */
   public static function getAlunoById($id)
   {
@@ -69,15 +73,15 @@ class User
   }
 
   /**
-   * Método responsável por retornar (atributos do aluno)
+   * Método responsável por retornar (atributos do usuário)
    * @param string $where
    * @param string $order
    * @param string $limit
    * @param string $fields
-   * @return PDOStatement 
+   * @return \PDOStatement 
    */
   public static function getAtributos($where = null, $order = null, $limit = null, $fields = '*')
   {
-    return (new Database('usuarios'))->select($where, $order, $limit, $fields);
+    return (new Database('usuario'))->select($where, $order, $limit, $fields);
   }
 }

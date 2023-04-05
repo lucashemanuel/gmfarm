@@ -19,6 +19,8 @@ class Paciente
 
   public $situacao;
 
+  public $user_id;
+
   public function cadastrar()
   {
     /* INSERE NO BANCO DE DADOS */
@@ -27,7 +29,8 @@ class Paciente
       'email' => $this->email,
       'contato' => $this->contato,
       'genero' => $this->genero,
-      'situacao' => $this->situacao
+      'situacao' => $this->situacao,
+      'user_id' => $this->user_id
     ]);
 
     /* Sucesso */
@@ -43,6 +46,7 @@ class Paciente
       'contato' => $this->contato,
       'genero' => $this->genero,
       'situacao' => $this->situacao,
+      'user_id' => $this->user_id
     ]);
   }
 
@@ -58,7 +62,7 @@ class Paciente
    * @param string $order
    * @param string $limit
    * @param string $fields
-   * @return PDOStatement 
+   * @return \PDOStatement
    */
   public static function getAtributos($where = null, $order = null, $limit = null, $fields = '*')
   {
@@ -67,8 +71,8 @@ class Paciente
 
   /**
    * Método responsável por retornar o paciente com base no ID
-   * @param integer $id_material
-   * @return Estoque
+   * @param integer $id
+   * @return Paciente
    */
   public static function getPacienteById($id)
   {

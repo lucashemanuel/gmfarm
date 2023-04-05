@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use \App\Model\Entity\Estoque as EntityEstoque;
+use \App\Model\Entity\Material as EntityMaterial;
 use \WilliamCosta\DatabaseManager\Pagination;
 
 use \App\Utils\View;
@@ -12,7 +12,7 @@ class Material extends Page
 
   /**
    * Método responsável por obter a renderização dos itens de estoque 
-   * @param Request
+   * @param \App\Http\Request
    * @param Pagination $obPagination
    * @return string
    */
@@ -22,7 +22,7 @@ class Material extends Page
     $itens = '';
 
     /* Quantidade toral de registros */
-    $quantidadeTotal = EntityEstoque::getItems(null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
+    $quantidadeTotal = EntityMaterial::getItems(null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
 
     /* Página atual */
     $queryParams = $request->getQueryParams();
@@ -32,10 +32,11 @@ class Material extends Page
     $obPagination = new Pagination($quantidadeTotal, $paginaAtual, 20);
 
     /* Resultados da página */
-    $results = EntityEstoque::getItems(null, 'id_material DESC', $obPagination->getLimit());
+    $results = EntityMaterial::getItems(null, 'id_material DESC', $obPagination->getLimit());
+
 
     /* Renderiza o item */
-    while ($obEstoque = $results->fetchObject(EntityEstoque::class)) {
+    while ($obEstoque = $results->fetchObject(EntityMaterial::class)) {
       $itens .= View::render('admin/modules/materiais/item', [
         'id_material' => $obEstoque->id_material,
         'reagente' => $obEstoque->reagente,
@@ -45,7 +46,7 @@ class Material extends Page
         'validade' => date('m/Y', strtotime($obEstoque->validade)),
         'quantidade' => $obEstoque->quantidade,
         'embalagem_original' => $obEstoque->embalagem_original,
-        'cas' => $obEstoque->cas,
+        'cas' => $obEstoque->cas
       ]);
     }
 
@@ -73,8 +74,8 @@ class Material extends Page
 
   /**
    * Método responsável por cadastrar um material no banco
-   * @param Request
-   * @return string
+   * @param \App\Http\Request
+   * @return string|void
    */
   public static function setNewMaterial($request)
   {
@@ -83,7 +84,7 @@ class Material extends Page
     $postVars = $request->getPostVars();
 
     /* NOVA INSTANCIA DE ESTOQUE */
-    $obMaterial = new EntityEstoque;
+    $obMaterial = new EntityMaterial;
     $obMaterial->reagente = $postVars['reagente'];
     $obMaterial->lote = $postVars['lote'];
     $obMaterial->fabricante = $postVars['fabricante'];
@@ -92,6 +93,7 @@ class Material extends Page
     $obMaterial->quantidade = $postVars['quantidade'];
     $obMaterial->embalagem_original = $postVars['embalagem_original'];
     $obMaterial->cas = $postVars['cas'];
+    $obMaterial->user_id = $_SESSION['admin']['usuario']['id'];
     $obMaterial->cadastrar();
 
     /* RETORNA PARA PÁGINA DE EDIÇÃO */
@@ -100,8 +102,8 @@ class Material extends Page
 
   /**
    * Método responsável por retornar a mensagem de status
-   * @param Request $request
-   * @return string
+   * @param \App\Http\Request $request
+   * @return string|void
    */
   private static function getStatus($request)
   {
@@ -116,19 +118,16 @@ class Material extends Page
     switch ($queryParams['status']) {
       case 'created':
         return Alert::getSuccess('Material criado com sucesso!');
-        break;
       case 'updated':
         return Alert::getSuccess('Material atualizado com sucesso!');
-        break;
       case 'deleted':
         return Alert::getSuccess('Material deletado com sucesso!');
-        break;
     }
   }
 
   /**
    * Método responsável por retornar o formulário de editação de um material
-   * @param Request $request
+   * @param \App\Http\Request $request
    * @param integer $id_material
    * @return string
    */
@@ -136,10 +135,10 @@ class Material extends Page
   {
 
     /* OBTEM MATERIAL NO BANCO DE DADOS */
-    $obMaterial = EntityEstoque::getMaterialById($id_material);
+    $obMaterial = EntityMaterial::getMaterialById($id_material);
 
     /* CASO NÃO EXISTA */
-    if (!$obMaterial instanceof EntityEstoque) {
+    if (!$obMaterial instanceof EntityMaterial) {
       $request->getRouter()->redirect('/admin/materiais');
     }
 
@@ -164,18 +163,18 @@ class Material extends Page
 
   /**
    * Método responsável por gravar a atualização de um material
-   * @param Request $request
+   * @param \App\Http\Request $request
    * @param integer $id_material
-   * @return string
+   * @return string|void
    */
   public static function setEditMaterial($request, $id_material)
   {
 
     /* OBTEM MATERIAL NO BANCO DE DADOS */
-    $obMaterial = EntityEstoque::getMaterialById($id_material);
+    $obMaterial = EntityMaterial::getMaterialById($id_material);
 
     /* CASO NÃO EXISTA */
-    if (!$obMaterial instanceof EntityEstoque) {
+    if (!$obMaterial instanceof EntityMaterial) {
       $request->getRouter()->redirect('/admin/materiais');
     }
 
@@ -200,7 +199,7 @@ class Material extends Page
 
   /**
    * Método responsável por retornar o formulário de exclusão de um material
-   * @param Request $request
+   * @param \App\Http\Request $request
    * @param integer $id_material
    * @return string
    */
@@ -208,10 +207,10 @@ class Material extends Page
   {
 
     /* OBTEM MATERIAL NO BANCO DE DADOS */
-    $obMaterial = EntityEstoque::getMaterialById($id_material);
+    $obMaterial = EntityMaterial::getMaterialById($id_material);
 
     /* CASO NÃO EXISTA */
-    if (!$obMaterial instanceof EntityEstoque) {
+    if (!$obMaterial instanceof EntityMaterial) {
       $request->getRouter()->redirect('/admin/materiais');
     }
 
@@ -228,18 +227,18 @@ class Material extends Page
 
   /**
    * Método responsável por fazer a exclusão de um material
-   * @param Request $request
+   * @param \App\Http\Request $request
    * @param integer $id_material
-   * @return string
+   * @return string|void
    */
   public static function setDeleteMaterial($request, $id_material)
   {
 
     /* OBTEM MATERIAL NO BANCO DE DADOS */
-    $obMaterial = EntityEstoque::getMaterialById($id_material);
+    $obMaterial = EntityMaterial::getMaterialById($id_material);
 
     /* CASO NÃO EXISTA */
-    if (!$obMaterial instanceof EntityEstoque) {
+    if (!$obMaterial instanceof EntityMaterial) {
       $request->getRouter()->redirect('/admin/materiais');
     }
 

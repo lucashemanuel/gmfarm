@@ -7,9 +7,9 @@ use \WilliamCosta\DatabaseManager\Database;
 class Dados
 {
 
-  public $estoque;
+  public $materiais;
   public $usuarios;
-  public $paciente;
+  public $pacientes;
 
   /**
    * Método responsável por retornar dados estatisticos

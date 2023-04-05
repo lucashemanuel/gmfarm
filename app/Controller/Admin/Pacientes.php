@@ -39,8 +39,8 @@ class Pacientes extends Page
 
   /**
    * Método responsável por cadastrar um paciente no banco
-   * @param Request
-   * @return string
+   * @param \App\Http\Request
+   * @return string|void
    */
   public static function setNewPaciente($request)
   {
@@ -55,6 +55,7 @@ class Pacientes extends Page
     $obPaciente->contato = $postVars['contato'];
     $obPaciente->genero = $postVars['genero'];
     $obPaciente->situacao = $postVars['situacao'];
+    $obPaciente->user_id = $_SESSION['admin']['usuario']['id'];
     $obPaciente->cadastrar();
 
     /* RETORNA PARA PÁGINA DE EDIÇÃO */
@@ -64,7 +65,7 @@ class Pacientes extends Page
 
   /**
    * Método responsável por retornar o formulário de editação de um PACIENTE
-   * @param Request $request
+   * @param \App\Http\Request $request
    * @param integer $id
    * @return string
    */
@@ -121,9 +122,9 @@ class Pacientes extends Page
 
   /**
    * Método responsável por gravar a atualização de um PACIENTE
-   * @param Request $request
+   * @param \App\Http\Request $request
    * @param integer $id
-   * @return string
+   * @return string|void
    */
   public static function setEditPaciente($request, $id)
   {
@@ -153,7 +154,7 @@ class Pacientes extends Page
 
   /**
    * Método responsável por retornar o formulário de exclusão de um paciente
-   * @param Request $request
+   * @param \App\Http\Request $request
    * @param integer $id
    * @return string
    */
@@ -181,9 +182,9 @@ class Pacientes extends Page
 
   /**
    * Método responsável por fazer a exclusão de um aluno
-   * @param Request $request
+   * @param \App\Http\Request $request
    * @param integer $id
-   * @return string
+   * @return string|void
    */
   public static function setDeletePaciente($request, $id)
   {
@@ -205,7 +206,7 @@ class Pacientes extends Page
 
   /**
    * Método responsável por obter a renderização dos atributos do paciente 
-   * @param Request
+   * @param \App\Http\Request
    * @param Pagination $obPagination
    * @return string
    */
@@ -263,8 +264,8 @@ class Pacientes extends Page
 
   /**
    * Método responsável por retornar a mensagem de status
-   * @param Request $request
-   * @return string
+   * @param \App\Http\Request $request
+   * @return string|void
    */
   private static function getStatus($request)
   {
@@ -279,13 +280,10 @@ class Pacientes extends Page
     switch ($queryParams['status']) {
       case 'created':
         return Alert::getSuccess('Paciente cadastrado com sucesso!');
-        break;
       case 'updated':
         return Alert::getSuccess('Dados do paciente atualizados com sucesso!');
-        break;
       case 'deleted':
         return Alert::getSuccess('Paciente deletado com sucesso!');
-        break;
     }
   }
 }

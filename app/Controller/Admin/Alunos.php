@@ -10,7 +10,7 @@ class Alunos extends Page
 {
   /**
    * Método responsável por obter a renderização dos atributos do aluno 
-   * @param Request
+   * @param \App\Http\Request
    * @param Pagination $obPagination
    * @return string
    */
@@ -65,8 +65,8 @@ class Alunos extends Page
 
   /**
    * Método responsável por cadastrar um aluno no banco
-   * @param Request
-   * @return string
+   * @param \App\Http\Request
+   * @return string|void
    */
   public static function setNewAluno($request)
   {
@@ -91,8 +91,8 @@ class Alunos extends Page
 
   /**
    * Método responsável por retornar a mensagem de status
-   * @param Request $request
-   * @return string
+   * @param \App\Http\Request $request
+   * @return string|void
    */
   private static function getStatus($request)
   {
@@ -107,19 +107,16 @@ class Alunos extends Page
     switch ($queryParams['status']) {
       case 'created':
         return Alert::getSuccess('Aluno cadastrado com sucesso!');
-        break;
       case 'updated':
         return Alert::getSuccess('Dados do aluno atualizados com sucesso!');
-        break;
       case 'deleted':
         return Alert::getSuccess('Aluno deletado com sucesso!');
-        break;
     }
   }
 
   /**
    * Método responsável por retornar o formulário de editação de um aluno
-   * @param Request $request
+   * @param \App\Http\Request $request
    * @param integer $id
    * @return string
    */
@@ -149,9 +146,9 @@ class Alunos extends Page
 
   /**
    * Método responsável por gravar a atualização de um aluno
-   * @param Request $request
+   * @param \App\Http\Request $request
    * @param integer $id
-   * @return string
+   * @return string|void
    */
   public static function setEditAluno($request, $id)
   {
@@ -186,7 +183,7 @@ class Alunos extends Page
 
   /**
    * Método responsável por retornar o formulário de exclusão de um aluno
-   * @param Request $request
+   * @param \App\Http\Request $request
    * @param integer $id
    * @return string
    */
@@ -214,9 +211,9 @@ class Alunos extends Page
 
   /**
    * Método responsável por fazer a exclusão de um aluno
-   * @param Request $request
+   * @param \App\Http\Request $request
    * @param integer $id
-   * @return string
+   * @return string|void
    */
   public static function setDeleteAluno($request, $id)
   {

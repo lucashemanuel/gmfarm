@@ -19,7 +19,7 @@ class Login
 
   /**
    * Método responsável por criar o login do usuário
-   * @param User $obUser
+   * @param $obUser
    * @return boolean
    */
   public static function login($obUser)

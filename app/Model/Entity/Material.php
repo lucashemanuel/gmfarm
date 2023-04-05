@@ -4,7 +4,7 @@ namespace App\Model\Entity;
 
 use \WilliamCosta\DatabaseManager\Database;
 
-class Estoque
+class Material
 {
 
   public $id_material;
@@ -25,10 +25,12 @@ class Estoque
 
   public $cas;
 
+  public $user_id;
+
   public function cadastrar()
   {
     /* INSERE NO BANCO DE DADOS */
-    $this->id_material = (new Database('estoque'))->insert([
+    $this->id_material = (new Database('material'))->insert([
       'reagente' => $this->reagente,
       'lote' => $this->lote,
       'fabricante' => $this->fabricante,
@@ -36,7 +38,8 @@ class Estoque
       'validade' => $this->validade,
       'quantidade' => $this->quantidade,
       'embalagem_original' => $this->embalagem_original,
-      'cas' => $this->cas
+      'cas' => $this->cas,
+      'user_id' => $this->user_id
     ]);
 
     /* Sucesso */
@@ -46,7 +49,7 @@ class Estoque
   /**
    * Método responsável por retornar o material com base no ID
    * @param integer $id_material
-   * @return Estoque
+   * @return Material
    */
   public static function getMaterialById($id_material)
   {
@@ -56,7 +59,7 @@ class Estoque
   public function atualizar()
   {
     /* ATUALIZA NO BANCO DE DADOS */
-    return (new Database('estoque'))->update('id_material = ' . $this->id_material, [
+    return (new Database('material'))->update('id_material = ' . $this->id_material, [
       'reagente' => $this->reagente,
       'lote' => $this->lote,
       'fabricante' => $this->fabricante,
@@ -64,14 +67,15 @@ class Estoque
       'validade' => $this->validade,
       'quantidade' => $this->quantidade,
       'embalagem_original' => $this->embalagem_original,
-      'cas' => $this->cas
+      'cas' => $this->cas,
+      'user_id' => $this->user_id
     ]);
   }
 
   public function excluir()
   {
     /* EXCLUI O MATERIAL NO BANCO DE DADOS */
-    return (new Database('estoque'))->delete('id_material = ' . $this->id_material);
+    return (new Database('material'))->delete('id_material = ' . $this->id_material);
   }
 
 
@@ -81,11 +85,11 @@ class Estoque
    * @param string $order
    * @param string $limit
    * @param string $fields
-   * @return PDOStatement 
+   * @return \PDOStatement 
    */
   public static function getItems($where = null, $order = null, $limit = null, $fields = '*')
   {
 
-    return (new Database('estoque'))->select($where, $order, $limit, $fields);
+    return (new Database('material'))->select($where, $order, $limit, $fields);
   }
 }

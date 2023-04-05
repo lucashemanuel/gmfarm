@@ -16,15 +16,15 @@ class Home extends Page
   public static function getHome($request)
   {
 
-    $results = EntityDados::getDados(null, null, null, '(select count(*) from estoque) AS estoque, (select count(*) from paciente) AS paciente, (select count(*) from usuarios) AS usuarios');
+    $results = EntityDados::getDados(null, null, null, '(select count(*) from material) AS materiais, (select count(*) from paciente) AS pacientes, (select count(*) from usuario) AS usuarios');
 
     $obDados = $results->fetchObject(EntityDados::class);
 
     /* CONTEÚDO DA HOME */
     $content = View::render('admin/modules/home/index', [
-      'nestoque' => $obDados->estoque ?? 0,
+      'nmateriais' => $obDados->materiais ?? 0,
       'nusuarios' => $obDados->usuarios ?? 0,
-      'npacientes' => $obDados->paciente ?? 0,
+      'npacientes' => $obDados->pacientes ?? 0,
     ]);
 
     /* RETORNA A PÁGINA COMPLETA */

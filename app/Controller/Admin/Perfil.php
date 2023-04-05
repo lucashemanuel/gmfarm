@@ -46,7 +46,6 @@ class Perfil extends Page
     /* VERIFICA A SENHA DO USUÁRIO */
     if (!password_verify($postVars['senha'], $obUser->senha)) {
       return self::getPerfil($request, 'A senha digitada não coincide com a senha atual!', null);
-      exit;
     }
 
     $cripSenha = password_hash($postVars['nsenha'], PASSWORD_BCRYPT);

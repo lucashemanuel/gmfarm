@@ -32,8 +32,8 @@ class Page
 
   /**
    * Método responsável por renderizar o layout de paginação
-   * @param Request $request
-   * @param Pagination $obPagination
+   * @param \App\Http\Request $request
+   * @param \WilliamCosta\DatabaseManager\Pagination $obPagination
    * @return string
    */
   public static function getPagination($request, $obPagination)

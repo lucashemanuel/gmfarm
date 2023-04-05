@@ -11,7 +11,7 @@ class Login extends Page
 
   /**
    * Método responsável por retornar a renderização da página de login
-   * @param Request $request
+   * @param \App\Http\Request $request
    * @param string $errorMsg
    * @return string 
    */
@@ -30,7 +30,7 @@ class Login extends Page
 
   /**
    * Método responsável por definir o login do usuário
-   * @param Request $request
+   * @param \App\Http\Request $request
    */
   public static function setLogin($request)
   {
@@ -60,7 +60,7 @@ class Login extends Page
 
   /**
    * Método responsável por deslogar o usuário
-   * @param Request $request
+   * @param \App\Http\Request $request
    */
   public static function setLogout($request)
   {
