@@ -94,7 +94,7 @@ class Database
    * Método responsável por executar queries dentro do banco de dados
    * @param  string $query
    * @param  array  $params
-   * @return PDOStatement
+   * @return \PDOStatement
    */
   public function execute($query, $params = [])
   {
@@ -134,14 +134,14 @@ class Database
    * @param  string $order
    * @param  string $limit
    * @param  string $fields
-   * @return PDOStatement
+   * @return \PDOStatement
    */
   public function select($where = null, $order = null, $limit = null, $fields = '*')
   {
     //DADOS DA QUERY
-    $where = strlen($where) ? 'WHERE ' . $where : '';
-    $order = strlen($order) ? 'ORDER BY ' . $order : '';
-    $limit = strlen($limit) ? 'LIMIT ' . $limit : '';
+    $where = !empty($where) ? 'WHERE ' . $where : '';
+    $order = !empty($order) ? 'ORDER BY ' . $order : '';
+    $limit = !empty($limit) ? 'LIMIT ' . $limit : '';
 
     //MONTA A QUERY
     $query = 'SELECT ' . $fields . ' FROM ' . $this->table . ' ' . $where . ' ' . $order . ' ' . $limit;
@@ -156,14 +156,14 @@ class Database
    * @param  string $order
    * @param  string $limit
    * @param  string $fields
-   * @return PDOStatement
+   * @return \PDOStatement
    */
   public function selectStats($where = null, $order = null, $limit = null, $fields = '*')
   {
     //DADOS DA QUERY
-    $where = strlen($where) ? 'WHERE ' . $where : '';
-    $order = strlen($order) ? 'ORDER BY ' . $order : '';
-    $limit = strlen($limit) ? 'LIMIT ' . $limit : '';
+    $where = !empty($where) ? 'WHERE ' . $where : '';
+    $order = !empty($order) ? 'ORDER BY ' . $order : '';
+    $limit = !empty($limit) ? 'LIMIT ' . $limit : '';
 
     //MONTA A QUERY
     $query = 'SELECT ' . $fields;
