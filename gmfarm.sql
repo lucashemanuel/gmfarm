@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1deb5ubuntu1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Tempo de geração: 07/07/2022 às 08:22
--- Versão do servidor: 8.0.29-0ubuntu0.22.04.2
--- Versão do PHP: 8.1.2
+-- Host: 127.0.0.1
+-- Tempo de geração: 06-Abr-2023 às 01:25
+-- Versão do servidor: 8.0.30
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,16 +20,14 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `gmfarm`
 --
-CREATE DATABASE IF NOT EXISTS `gmfarm` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `gmfarm`;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `estoque`
+-- Estrutura da tabela `material`
 --
 
-CREATE TABLE `estoque` (
+CREATE TABLE `material` (
   `id_material` int NOT NULL,
   `reagente` varchar(255) NOT NULL,
   `lote` varchar(255) NOT NULL,
@@ -38,13 +36,22 @@ CREATE TABLE `estoque` (
   `validade` varchar(20) NOT NULL,
   `embalagem_original` varchar(10) NOT NULL,
   `quantidade` int NOT NULL,
-  `cas` varchar(255) NOT NULL
+  `cas` varchar(255) NOT NULL,
+  `user_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `material`
+--
+
+INSERT INTO `material` (`id_material`, `reagente`, `lote`, `fabricante`, `fabricacao`, `validade`, `embalagem_original`, `quantidade`, `cas`, `user_id`) VALUES
+(3, 'Dipirona', '01', 'Neoquimica', '2023-03', '2024-03', 'Sim', 1, '01892', 1),
+(4, 'Dipirona 2', '03', 'Neoquimica', '2023-03', '2023-07', 'Não', 4, '01892asd', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `paciente`
+-- Estrutura da tabela `paciente`
 --
 
 CREATE TABLE `paciente` (
@@ -53,16 +60,24 @@ CREATE TABLE `paciente` (
   `email` varchar(255) NOT NULL,
   `contato` varchar(20) NOT NULL,
   `genero` varchar(5) NOT NULL,
-  `situacao` varchar(15) NOT NULL
+  `situacao` varchar(15) NOT NULL,
+  `user_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `paciente`
+--
+
+INSERT INTO `paciente` (`id`, `nome`, `email`, `contato`, `genero`, `situacao`, `user_id`) VALUES
+(2, 'Lucas', 'lucas@gmail.com', '61994480357', 'M', 'Indeferido', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuarios`
+-- Estrutura da tabela `usuario`
 --
 
-CREATE TABLE `usuarios` (
+CREATE TABLE `usuario` (
   `id` int NOT NULL,
   `nome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -72,10 +87,10 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Despejando dados para a tabela `usuarios`
+-- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuarios` (`id`, `nome`, `email`, `matricula`, `senha`, `tipo_usuario`) VALUES
+INSERT INTO `usuario` (`id`, `nome`, `email`, `matricula`, `senha`, `tipo_usuario`) VALUES
 (1, 'Admin', 'admin@gmail.com', '0013970', '$2y$10$c47NbrGr3Cr4p8uvtQHkcuHKIjhvPGIjr1U0jaGtiHyRvdsZUBjwu', 'admin'),
 (2, 'Aluno Teste', 'teste@teste.com', '0013970', '$2y$10$xj0MSSCxXBD6fkSiGfyUlu2/FVNc31HEWRm4aYhi7KlPb2o5DjzFG', 'aluno');
 
@@ -84,45 +99,63 @@ INSERT INTO `usuarios` (`id`, `nome`, `email`, `matricula`, `senha`, `tipo_usuar
 --
 
 --
--- Índices de tabela `estoque`
+-- Índices para tabela `material`
 --
-ALTER TABLE `estoque`
-  ADD PRIMARY KEY (`id_material`);
+ALTER TABLE `material`
+  ADD PRIMARY KEY (`id_material`),
+  ADD KEY `USER_CREATE_MATERIAL` (`user_id`);
 
 --
--- Índices de tabela `paciente`
+-- Índices para tabela `paciente`
 --
 ALTER TABLE `paciente`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `USER_CREATE_PATIENT` (`user_id`);
 
 --
--- Índices de tabela `usuarios`
+-- Índices para tabela `usuario`
 --
-ALTER TABLE `usuarios`
+ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT de tabela `estoque`
+-- AUTO_INCREMENT de tabela `material`
 --
-ALTER TABLE `estoque`
-  MODIFY `id_material` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `material`
+  MODIFY `id_material` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de tabela `usuarios`
+-- AUTO_INCREMENT de tabela `usuario`
 --
-ALTER TABLE `usuarios`
+ALTER TABLE `usuario`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `material`
+--
+ALTER TABLE `material`
+  ADD CONSTRAINT `USER_CREATE_MATERIAL` FOREIGN KEY (`user_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `paciente`
+--
+ALTER TABLE `paciente`
+  ADD CONSTRAINT `USER_CREATE_PATIENT` FOREIGN KEY (`user_id`) REFERENCES `usuario` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
