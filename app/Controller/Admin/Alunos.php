@@ -82,6 +82,7 @@ class Alunos extends Page
     $obUser->email = $postVars['email'];
     $obUser->matricula = $postVars['matricula'];
     $obUser->senha = $senhaCrip;
+    $obUser->tipo_usuario = 'aluno';
     $obUser->cadastrar();
 
     /* RETORNA PARA PÁGINA DE EDIÇÃO */
