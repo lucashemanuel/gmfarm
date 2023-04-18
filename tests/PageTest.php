@@ -9,12 +9,20 @@ use \WilliamCosta\DatabaseManager\Pagination;
 
 class PageTest extends TestCase {
 
-  public function testIfPageExists() {
-    $page = new Page;        
+  public function testIfPageIsNull() {
+    $request = Request::class;
+    $obPagination = Pagination::class;
+
+    $page = new Page($request, $obPagination);
+    $this -> assertNull($page);
   }
-  
-  public function testIfPageNotExists() {
-    $page = new Page;
-  }
+
+  public function testIfPageIsEmpty() {
+    $request = Request::class;
+    $obPagination = Pagination::class;
+
+    $page = new Page($request, $obPagination);
+    $this -> assertEmpty($page);
+  } 
 
 }
