@@ -4,6 +4,7 @@ namespace App\Model\Entity;
 
 use \WilliamCosta\DatabaseManager\Database;
 
+
 class User
 {
   public $id;
